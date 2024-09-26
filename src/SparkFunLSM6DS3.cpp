@@ -753,7 +753,8 @@ int16_t LSM6DS3::readRawTemp( void )
 
 float LSM6DS3::readTempC( void )
 {
-	float output = (float)readRawTemp() / 16; //divide by 16 to scale
+	//float output = (float)readRawTemp() / 16; //divide by 16 to scale
+	float output = (float)readRawTemp() / 256; //divide by 256 to scale: Application Note AN5130 Chapter 9 256LSB/°C
 	output += 25; //Add 25 degrees to remove offset
 
 	return output;
@@ -762,7 +763,8 @@ float LSM6DS3::readTempC( void )
 
 float LSM6DS3::readTempF( void )
 {
-	float output = (float)readRawTemp() / 16; //divide by 16 to scale
+	//float output = (float)readRawTemp() / 16; //divide by 16 to scale = Wrong
+	float output = (float)readRawTemp() / 256; //divide by 256 to scale: Application Note AN5130 Chapter 9 256LSB/°C
 	output += 25; //Add 25 degrees to remove offset
 	output = (output * 9) / 5 + 32;
 
